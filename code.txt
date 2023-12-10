@@ -1,0 +1,409 @@
+#include<stdio.h>
+struct myStructure {
+  int yeardob;
+  int monthdob;
+  int datedob;
+  int age;
+  long int pnum;
+  char name[20];
+  char name2[20];
+  char f1name[20];
+  char f2name[20];
+};
+
+
+int main()
+{
+    struct  myStructure s1;  
+    int typeofaccount,debit,text;
+  float newbalance;
+  printf("\n\t\t    -----------|WELCOME SIR|-----------");
+  printf("\n\n\n\t\t<________ TO OPEN BANK ACCOUNT________>\n");
+    printf("\n\t\t\tTYPE OF ACCOUNT:\n");
+    printf("\nChoose the type of account you want-\n\tFor Current Account enter 1:\n\tFor Saving Account enter 2:\n");
+    scanf("%d",&typeofaccount);
+    if(typeofaccount==1)
+     {
+        printf("\n\t\t\t\tYou have choosen Current Account\n\n");
+
+        printf("\n\t\t\t\tEnter the following details given below:");
+        
+        printf("\nEnter your first name:");
+        scanf("%s",&s1.name);
+        printf("\nEnter your surname:");
+        scanf("%s",&s1.name2);
+        printf("\nEnter your date of birth in tris form dd/mm/yyyy:");
+        scanf("%d %d %d",&s1.datedob,&s1.monthdob,&s1.yeardob);       
+        printf("\nEnter your age:");
+        scanf("%d",&s1.age);
+        printf("\nEnter your fathers first name:");
+        scanf("%s",&s1.f1name);
+        printf("\nEnter your fathers surname:");
+        scanf("%s",&s1.f2name);
+        printf("\nEnter your phone number:");
+        scanf("%ld",&s1.pnum);
+
+       printf("\n\t\t\t\tDisplaying Information:");
+        printf("\nName:%s %s\n",s1.name,s1.name2);
+        printf("\nDate Of Birth:%d-%d-%d\n",s1.datedob,s1.monthdob,s1.datedob);
+        printf("\nAge:%d\n",s1.age);
+        printf("\nFathers Name:%s %s\n",s1.f1name,s1.f2name);
+        printf("\nPhone Number:%ld\n",s1.pnum);
+        printf("\n______________________________________________________________________________________");
+        float amount,interestcharge,interestgiven,sheet;
+        printf("\n\n\n\t\t\t\tFOR OPENING OF BANK ACCOUNT\n");
+         printf("\nEnter the amount you will transfer for opening of bank account:\n\nMinium money required to open bank account is Rs 5000: ");
+        scanf("%f",&amount);
+        while(amount<5000)
+        {
+         printf("\nRe enter the amount\nAmount should be greater than 5000:\n  ");
+        
+         scanf("%f",&amount);
+        }
+
+         if(amount>=5000)
+            {
+             printf("\n\n\t\t\t\tThankyou for entering the amount\n");
+            }
+            printf("\n\n\t\t\tYour account has been created successfully\n");
+            printf("\n\n\t\t\t\tCurrent balance:Rs%f\n",amount);
+
+       printf("\nBalance can go to -Rs50000\n");
+       int trawith;
+       printf("\n_______________________________________________________________________________________");
+       printf("\n\n\t\t\t\tTO TRANSFER OR WITHDRAW");
+       printf("\n\n\nIf you want to transfer money to the bank account or withdraw money from bank account,enter 0:\n ");
+       scanf("%d",&trawith);
+       int enter,transfer,withdraw,aftertransfer,afterwithdraw;
+       
+       
+       if(trawith==0)
+       {
+        printf("\nFor transferring money to the bank account enter 1:\n");
+
+        printf("\nFor withdrawing money from the bank account enter 2:\n");
+        scanf("%d",&enter);
+        if(enter==1)
+        {printf("\n\n\n\t\t\t\tFOR TRANSFERRING");
+          printf("\nEnter the amount you want to transfer to the bank account:");
+          scanf("%d",&transfer);
+          aftertransfer=amount+transfer;
+          
+          printf("\n\n\t\t\t\tCurrent balance:Rs%d",aftertransfer);
+
+
+          if(aftertransfer<0)
+       {
+        printf("\n6%% per annum will be charge on negative balance");
+        interestcharge=(6*(-aftertransfer))/100.;
+       
+       printf("\nInterest Charge:%f",interestcharge);
+       newbalance=aftertransfer-interestcharge;
+       printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+       printf("\n\t\t\t\tBALANCE SHEET");  
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d           %f           interest charge           %f ",amount,interestcharge);
+    printf("\n                                       to balance c/d          %f ",newbalance);
+    printf("\n transfer amount          %d                                      ",transfer);
+    printf("\n                         ___________                            __________");
+    printf("\n                          %f                                     %f ",amount,amount);
+
+        
+       }
+       if(aftertransfer>0)
+       {
+        printf("\n4%% compound interest will be provided for positive balance");
+        interestgiven=aftertransfer*(1+4/100.);
+        printf("\nInterest Provided:%f",interestgiven);
+        interestgiven=interestgiven-aftertransfer;
+        newbalance=aftertransfer+interestgiven;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+         printf("\n\n\n\t\t\t\tBALANCE SHEET");
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d            %f           to balance c/d            %f ",amount,newbalance); 
+    printf("\n  inerest given            %f                                            ",interestgiven);
+    printf("\n transfer amount           %d                                      ",transfer);
+    printf("\n                           ___________                                __________");
+    printf("\n  Total                    %f                                      %f ",newbalance,newbalance);
+
+        
+
+       }
+
+        }
+        if(enter==2)
+        {printf("\n\n\t\t\t\tFOR WITHDRAWING");
+          printf("\nEnter the amount you want to withdraw from the bank account:");
+          scanf("%d",&withdraw);
+          afterwithdraw=amount-withdraw;
+          printf("\n\n\n\t\t\t\tCurrent balance:Rs%d",afterwithdraw);
+
+          if(afterwithdraw<0)
+       {
+        printf("\n6%% per annum will be charge on negative balance");
+        interestcharge=(6*(-afterwithdraw))/100.;
+         printf("\nInterest Charge:%f",interestcharge);
+        newbalance=afterwithdraw-interestcharge;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+        printf("\n\t\t\t\tBALANCE SHEET");
+     printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d             %f         interest charge        %f ",amount,interestcharge);
+    printf("\n                                          to balance c/d         %f ",newbalance);
+   printf("\n                                           withdraw amount        %d             ",withdraw);
+    printf("\n                         ___________                            __________");
+    printf("\n                          %f                                     %f ",amount,amount);
+       }
+
+
+       if(afterwithdraw>0)
+       {
+        printf("\n4%% compound interest will be provided for positive balance");
+        interestgiven=afterwithdraw*(1+(4/100.));
+        printf("\nInterest Provided:%f",interestgiven);
+        interestgiven=interestgiven-afterwithdraw;
+        newbalance=afterwithdraw+interestgiven;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+         printf("\n\n\n\t\t\t\tBALANCE SHEET");
+     printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d            %f           to balance c/d            %f ",amount,newbalance); 
+    printf("\n  inerest given            %f                                            ",interestgiven);
+    printf("\n                                        withdraw amount           %d             ",withdraw);
+    printf("\n                           ___________                             __________");
+    printf("\n  Total                    %f                                      %f ",newbalance,newbalance);
+
+        }
+       }
+       }
+       
+       
+        
+        
+
+
+     }
+
+
+
+    if(typeofaccount==2)
+     {
+         printf("\n\n\n\n\t\t\t\tYou have choose Saving Account\n\n");
+
+        printf("\n\n\n\t\t\t\tEnter the following details given below:");
+        
+        printf("\nEnter your first name:");
+        scanf("%s",&s1.name);
+        printf("\nEnter your surname:");
+        scanf("%s",&s1.name2);
+        printf("\nEnter your date of birth:");
+        scanf("%d %d %d",&s1.datedob,&s1.monthdob,&s1.yeardob);
+        printf("\nEnter your age:");
+        scanf("%d",&s1.age);
+        printf("\nEnter your fathers first name:");
+        scanf("%s",&s1.f1name);
+        printf("\nEnter your fathers surname:");
+        scanf("%s",&s1.f2name);
+        printf("\nEnter your phone number:");
+        scanf("%ld",&s1.pnum);
+
+       printf("\n\n\n\t\t\t\tDisplaying Information:");
+        printf("\nName:%s %s\n",s1.name,s1.name2);
+        printf("\nDate Of Birth:%d %d %d\n",s1.datedob,s1.monthdob,s1.datedob);
+        printf("\nAge:%d\n",s1.age);
+        printf("\nFathers Name:%s %s\n",s1.f1name,s1.f2name);
+        printf("\nPhone Number:%ld\n",s1.pnum);
+        printf("\n_____________________________________________________________________________");
+
+         float amount,interestcharge,interestgiven;
+         printf("\n\n\n\t\t\t\tFOR OPENING OF BANK ACCOUNT");
+
+         printf("\nEnter the amount you will transfer for opening of bank account:\n\nMinium money required to open bank account is Rs 100:\n ");
+        scanf("%f",&amount);
+        while(amount<100)
+        {
+         printf("\nRe enter the amount\nAmount should be greater than 100:\n  ");
+        
+         scanf("%f",&amount);
+        }
+
+         if(amount>=100)
+            {
+             printf("\n\n\t\t\t\tThankyou for entering the amount");
+            }
+    
+          printf("\n\n\n\t\t\t\tYour account has been created successfully\n");
+            printf("\n\n\n\t\t\t\tCurrent balance:Rs%f\n",amount);
+
+       printf("\nBalance can go to Rs50\n");
+       int trawith;
+       printf("\n\n\n\t\t\t\tTO TRANSFER OR WITHDRAW");
+       printf("\n\nIf you want to transfer money to the bank account or withdraw money from bank account,enter 0:\n ");
+       scanf("%d",&trawith);
+       int enter,transfer,withdraw,aftertransfer,afterwithdraw;
+       
+       
+       if(trawith==0)
+       {
+        printf("\nFor transferring money to the bank account enter 1:\n");
+
+        printf("\nFor withdrawing money from the bank account enter 2:\n");
+        scanf("%d",&enter);
+        if(enter==1)
+        {printf("\n\n\n\t\t\t\tFOR TRANSFERRING");
+          printf("\nEnter the amount you want to transfer to the bank account:");
+          scanf("%d",&transfer);
+          aftertransfer=amount+transfer;
+          printf("\n\n\t\t\t\tCurrent balance:Rs%d",aftertransfer);
+
+          if(aftertransfer<50)
+       {
+        
+        printf("\n6%% per annum will be charge on negative balance");
+        interestcharge=(6*(-aftertransfer))/100.;
+       
+       printf("\nInterest Charge:%f",interestcharge);
+       newbalance=aftertransfer-interestcharge;
+       printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+        printf("\n\t\t\t\tBALANCE SHEET");
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d           %f           interest charge        %f ",amount,interestcharge);
+    printf("\n                                          to balance c/d         %f ",newbalance);
+   printf("\n transfer amount           %d                                      ",transfer);;
+    printf("\n                         ___________                            __________");
+    printf("\n                          %f                                     %f ",amount,amount);
+        
+       }
+       if(aftertransfer>50)
+       {
+        printf("\n4%% compound interest will be provided for positive balance");
+        interestgiven=aftertransfer*(5/100.);
+        printf("\nInterest Provided:%f",interestgiven);
+        newbalance=aftertransfer+interestgiven;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+          printf("\n\n\n\t\t\t\tBALANCE SHEET");
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d            %f           to balance c/d            %f ",amount,newbalance); 
+    printf("\n  inerest given            %f                                            ",interestgiven);
+    printf("\n transfer amount           %d                                      ",transfer);
+    printf("\n                           ___________                                __________");
+    printf("\n  Total                    %f                                      %f ",newbalance,newbalance);
+
+       }
+
+        }
+        if(enter==2)
+        {printf("\n\n\n\t\t\t\tFOR WITHDRAWING");
+          printf("\nEnter the amount you want to withdraw to the bank account:");
+          scanf("%d",&withdraw);
+          afterwithdraw=amount-withdraw;
+          printf("\n\n\t\t\t\tCurrent balance:Rs%d",afterwithdraw);
+
+          if(afterwithdraw<50)
+       {
+        
+        if(afterwithdraw<0)
+        {
+         printf("\n6%% per annum will be charge on negative balance");
+        interestcharge=(10*(-afterwithdraw))/100.;
+         printf("\nInterest Charge:%f",interestcharge);
+        newbalance=afterwithdraw-interestcharge;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+          printf("\n\t\t\t\tBALANCE SHEET");
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d             %f         interest charge        %f ",amount,interestcharge);
+    printf("\n                                          to balance c/d         %f ",newbalance);
+   printf("\n                                           withdraw amount        %d             ",withdraw);
+    printf("\n                         ___________                            __________");
+    printf("\n                          %f                                     %f ",amount,amount);
+        
+        }
+        if(afterwithdraw>=0)
+        {
+        printf("\n6%% per annum will be charge on negative balance");
+        interestcharge=(10*(afterwithdraw))/100.;
+         printf("\nInterest Charge:%f",interestcharge);
+        newbalance=afterwithdraw-interestcharge;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+          printf("\n\t\t\t\tBALANCE SHEET");
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d             %f         interest charge        %f ",amount,interestcharge);
+    printf("\n                                          to balance c/d         %f ",newbalance);
+   printf("\n                                           withdraw amount        %d             ",withdraw);
+    printf("\n                         ___________                            __________");
+    printf("\n                          %f                                     %f ",amount,amount);
+        
+        }
+       }
+
+
+       if(afterwithdraw>50)
+       {
+        printf("\n5%% compound interest will be provided for positive balance");
+        interestgiven=afterwithdraw*(5/100.);
+        printf("\nInterest Provided:%f",interestgiven);
+        newbalance=afterwithdraw+interestgiven;
+        printf("\n\n\t\t\t\tCurrent Balance:Rs%f",newbalance);
+
+         printf("\n\n\n\t\t\t\tBALANCE SHEET");
+    printf("\n  PARTICULARS                     RS         PARTICULARS                    RS");
+    printf("\n to balance b/d            %f           to balance c/d            %f ",amount,newbalance); 
+    printf("\n  inerest given            %f                                            ",interestgiven);
+    printf("\n                                        withdraw amount           %d             ",withdraw);
+    printf("\n                           ___________                                __________");
+    printf("\n  Total                    %f                                      %f ",newbalance,newbalance);
+
+       }
+        }
+        
+       }
+       }
+        printf("\n_____________________________________________________________");
+        printf("\n\n\n\t\t\t\tFor DEBIT CARD");
+       printf("\n\n\nIf you want to issue debit card enter 1 else enter 2 for not issuing");
+       printf("\nAfter issuing debit card Rs10 will be charged per quarter");
+       scanf("%d",&debit);
+       if(debit==1){
+       
+       
+        printf("\nDebit card has been issued successfully");
+        newbalance=newbalance-10;
+        printf("\n\n\t\t\t\tCurrent balance will be %f",newbalance);
+       
+       printf("\n_____________________________________________________________");
+       printf("\n\n\n\t\t\t\tFor TEXT MESSAGE SERVICE");
+       printf("\n\n\nIf you want to opt text message service enter 1:");
+       printf("\nAfter opting forText message service Rs50 will be charged per quarter");
+       scanf("%d",&text);
+       if(text==1)
+       {
+        printf("\nText message service has been issued successfully");
+        newbalance=newbalance-50;
+        printf("\n\n\t\t\t\tCurrent balance will be %f",newbalance);
+       
+       }
+       }
+
+      else if(debit==2){ printf("\n_____________________________________________________________");
+        printf("\n\n\n\t\t\t\tFor TEXT MESSAGE SERVICE");
+       printf("\n\n\nIf you want to opt text message service enter 1:");
+       printf("\nAfter opting forText message service Rs50 will be charged per quarter");
+       scanf("%d",&text);
+       if(text==1)
+       {
+        printf("\nText message service has been issued successfully");
+        newbalance=newbalance-50;
+        printf("\n\n\t\t\t\tCurrent balance will be %d",newbalance);
+       }
+      }
+      
+       printf("\n\n\t\t-----------|THANKYOU FOR VISITING|------------");
+
+    return 0;
+
+}
